@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B7376111D7C6332000C0E55 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B7376101D7C6332000C0E55 /* Launch Screen.storyboard */; };
 		8B7C6A021D7B4ECA004D7F2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C6A011D7B4ECA004D7F2F /* AppDelegate.swift */; };
 		8B7C6A041D7B4ECA004D7F2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C6A031D7B4ECA004D7F2F /* ViewController.swift */; };
 		8B7C6A071D7B4ECA004D7F2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B7C6A051D7B4ECA004D7F2F /* Main.storyboard */; };
 		8B7C6A0A1D7B4ECA004D7F2F /* FindMe_Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C6A081D7B4ECA004D7F2F /* FindMe_Swift.xcdatamodeld */; };
 		8B7C6A0C1D7B4ECA004D7F2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B7C6A0B1D7B4ECA004D7F2F /* Assets.xcassets */; };
-		8B7C6A0F1D7B4ECA004D7F2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B7C6A0D1D7B4ECA004D7F2F /* LaunchScreen.storyboard */; };
 		8B7C6A1A1D7B4ECA004D7F2F /* FindMe_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C6A191D7B4ECA004D7F2F /* FindMe_SwiftTests.swift */; };
 		8B7C6A251D7B4ECA004D7F2F /* FindMe_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C6A241D7B4ECA004D7F2F /* FindMe_SwiftUITests.swift */; };
 		8B7C6A371D7B5C43004D7F2F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7C6A361D7B5C43004D7F2F /* CoreBluetooth.framework */; };
@@ -40,13 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B7376101D7C6332000C0E55 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8B7C69FE1D7B4ECA004D7F2F /* FindMe_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMe_Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7C6A011D7B4ECA004D7F2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B7C6A031D7B4ECA004D7F2F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8B7C6A061D7B4ECA004D7F2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B7C6A091D7B4ECA004D7F2F /* FindMe_Swift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FindMe_Swift.xcdatamodel; sourceTree = "<group>"; };
 		8B7C6A0B1D7B4ECA004D7F2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8B7C6A0E1D7B4ECA004D7F2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B7C6A101D7B4ECA004D7F2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B7C6A151D7B4ECA004D7F2F /* FindMe_SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindMe_SwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7C6A191D7B4ECA004D7F2F /* FindMe_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMe_SwiftTests.swift; sourceTree = "<group>"; };
@@ -119,10 +119,10 @@
 			children = (
 				8B7C6A011D7B4ECA004D7F2F /* AppDelegate.swift */,
 				8B7C6A031D7B4ECA004D7F2F /* ViewController.swift */,
+				8B7376101D7C6332000C0E55 /* Launch Screen.storyboard */,
 				8B7C6A3A1D7B5E5E004D7F2F /* Beacon.swift */,
 				8B7C6A051D7B4ECA004D7F2F /* Main.storyboard */,
 				8B7C6A0B1D7B4ECA004D7F2F /* Assets.xcassets */,
-				8B7C6A0D1D7B4ECA004D7F2F /* LaunchScreen.storyboard */,
 				8B7C6A101D7B4ECA004D7F2F /* Info.plist */,
 				8B7C6A081D7B4ECA004D7F2F /* FindMe_Swift.xcdatamodeld */,
 			);
@@ -252,8 +252,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B7C6A0F1D7B4ECA004D7F2F /* LaunchScreen.storyboard in Resources */,
 				8B7C6A0C1D7B4ECA004D7F2F /* Assets.xcassets in Resources */,
+				8B7376111D7C6332000C0E55 /* Launch Screen.storyboard in Resources */,
 				8B7C6A071D7B4ECA004D7F2F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,14 +324,6 @@
 				8B7C6A061D7B4ECA004D7F2F /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8B7C6A0D1D7B4ECA004D7F2F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8B7C6A0E1D7B4ECA004D7F2F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -515,6 +507,7 @@
 				8B7C6A2B1D7B4ECA004D7F2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B7C6A2C1D7B4ECA004D7F2F /* Build configuration list for PBXNativeTarget "FindMe_SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +516,7 @@
 				8B7C6A2E1D7B4ECA004D7F2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B7C6A2F1D7B4ECA004D7F2F /* Build configuration list for PBXNativeTarget "FindMe_SwiftUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +525,7 @@
 				8B7C6A311D7B4ECA004D7F2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

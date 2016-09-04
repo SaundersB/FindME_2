@@ -5,6 +5,13 @@
 //  Created by Brandon_Saunders on 9/3/16.
 //  Copyright © 2016 Brandon_Saunders. All rights reserved.
 //
+/*
+
+ 
+Immediate	Within a few centimeters
+Near	Within a couple of meters
+Far	Greater than 10 meters away
+*/
 
 import Foundation
 import UIKit
@@ -32,9 +39,6 @@ extension ViewController: CLLocationManagerDelegate {
         
         // called delegate when Enter iBeacon Range
         beaconRegion.notifyOnEntry = true
-        
-        // called delegate when Exit iBeacon Range
-        beaconRegion.notifyOnExit = true
         
         // Requests permission to use location services
         locationManager.requestAlwaysAuthorization()
@@ -104,9 +108,6 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion)
     {
-        print("didRangeBeacons")
-
-        
         // Tells the delegate that one or more beacons are in range.
         let foundBeacons = beacons
         
@@ -115,6 +116,9 @@ extension ViewController: CLLocationManagerDelegate {
             if let closestBeacon = foundBeacons[0] as? CLBeacon {
                 
                 var proximityMessage: String!
+                
+                
+                
                 if lastStage != closestBeacon.proximity {
                     
                     lastStage = closestBeacon.proximity
@@ -122,21 +126,24 @@ extension ViewController: CLLocationManagerDelegate {
                     switch  lastStage {
                         
                     case .Immediate:
+                        print("Immediate")
                         proximityMessage = "Very close"
                         self.view.backgroundColor = UIColor.greenColor()
                         
                     case .Near:
+                        print("Near")
                         proximityMessage = "Near"
                         self.view.backgroundColor = UIColor.grayColor()
                         
                     case .Far:
+                        print("Far")
                         proximityMessage = "Far"
-                        self.view.backgroundColor = UIColor.blackColor()
+                        self.view.backgroundColor = UIColor.redColor()
                         
                         
                     default:
-                        proximityMessage = "Where's the beacon?"
-                        self.view.backgroundColor = UIColor.redColor()
+                        proximityMessage = "Out of range"
+                        self.view.backgroundColor = UIColor.whiteColor()
                         
                     }
                     var makeString = "Beacon Details:n"
