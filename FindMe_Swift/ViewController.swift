@@ -25,8 +25,7 @@ class ViewController: UIViewController,CBPeripheralManagerDelegate {
         // Define in iBeacon.swift
         beaconStatus.numberOfLines = 0;
         beaconStatus.textAlignment = NSTextAlignment.Center;
-        beaconStatus.font = UIFont (name: "Helvetica Neue", size: 30)
-        
+        beaconStatus.font = UIFont (name: "HelveticaNeue-Bold", size: 50)
         self.setupBeacon()
     }
     

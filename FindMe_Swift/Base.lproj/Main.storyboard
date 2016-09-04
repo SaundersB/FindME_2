@@ -18,10 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5EF-lr-JuJ">
-                                <rect key="frame" x="192" y="68" width="216" height="465"/>
-                                <string key="text">FindMe
- </string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Listening for Beacons..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5EF-lr-JuJ">
+                                <rect key="frame" x="192" y="203" width="216" height="143"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -29,9 +27,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="5EF-lr-JuJ" secondAttribute="trailing" id="1OR-NY-geo"/>
-                            <constraint firstItem="5EF-lr-JuJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="UMS-4I-YAQ"/>
-                            <constraint firstItem="5EF-lr-JuJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="pOo-eO-QzY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5EF-lr-JuJ" secondAttribute="trailing" id="4cC-Ln-6Df"/>
+                            <constraint firstItem="5EF-lr-JuJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cX2-Kd-Vkb"/>
+                            <constraint firstItem="5EF-lr-JuJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="250" id="rwC-bV-TRN"/>
                         </constraints>
                     </view>
                     <connections>
