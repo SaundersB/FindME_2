@@ -18,7 +18,7 @@ class ViewController: UIViewController,CBPeripheralManagerDelegate {
     var locationManager = CLLocationManager()
     let myBTManager = CBPeripheralManager()
     var lastStage = CLProximity.Unknown
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,7 +26,7 @@ class ViewController: UIViewController,CBPeripheralManagerDelegate {
         beaconStatus.numberOfLines = 0;
         beaconStatus.textAlignment = NSTextAlignment.Center;
         beaconStatus.font = UIFont (name: "Helvetica Neue", size: 30)
-
+        
         self.setupBeacon()
     }
     
