@@ -135,8 +135,7 @@ extension ViewController: CLLocationManagerDelegate {
                         print("Immediate")
                         proximityMessage = "Immediate"
                         self.view.backgroundColor = UIColor.greenColor()
-                        sendLocalNotificationWithMessage("You're in our store")
-                        
+                    
                     case .Unknown:
                         print("Out of range")
                         proximityMessage = "Out of range"
@@ -159,9 +158,6 @@ extension ViewController: CLLocationManagerDelegate {
         // Tells the delegate that the user entered in iBeacon range or area.
         simpleAlert("Welcome", message: "Welcome to our store!")
         sendLocalNotificationWithMessage("Welcome to our store!")
-        // This method called because
-        // beaconRegion.notifyOnEntry = true
-        // in setupBeacon() function
     }
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -171,9 +167,6 @@ extension ViewController: CLLocationManagerDelegate {
         // Tells the delegate that the user exit the iBeacon range or area.
         simpleAlert("Good Bye", message: "Thank you for visiting.")
         sendLocalNotificationWithMessage("Thank you for visiting.")
-        // This method called because
-        // beaconRegion.notifyOnExit = true
-        // in setupBeacon() function
     }
     
     func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
