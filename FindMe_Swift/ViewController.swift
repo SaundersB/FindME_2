@@ -17,7 +17,6 @@ class ViewController: UIViewController,CBPeripheralManagerDelegate {
     
     var locationManager = CLLocationManager()
     let myBTManager = CBPeripheralManager()
-    var lastStage = CLProximity.Unknown
         
     override func viewDidLoad() {
         super.viewDidLoad()
