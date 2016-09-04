@@ -40,24 +40,26 @@ import CoreLocation
 // Inherit the ViewController class.
 extension ViewController: CLLocationManagerDelegate {
     func setupBeacon() {
-        print("Setting up the iBeacon reading")
+        print("Setting up for iBeacon reading")
         
+        // Enabling location services.
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        view.backgroundColor = UIColor.grayColor()
         
-        // Enter Your iBeacon UUID
+        // iBeacon UUID
         let uuid = NSUUID(UUIDString: "e2c56db5-dffb-48d2-b060-d0f5a71096e0")!
         
-        // Use identifier like your company name or website
+        // Company identifier. I like to use the bundler identifier.
         let identifier = "saunders-brandon.FindMe-Swift"
         
+        // Setting the major and minor codes that are specific to the iBeacon.
         let Major:CLBeaconMajorValue = 0
         let Minor:CLBeaconMinorValue = 0
         
+        // Setting the reacon region according to the beacon specific stats.
         let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: Major, minor: Minor, identifier: identifier)
         
-        // called delegate when Enter iBeacon Range
+        // Called delegate when Enter iBeacon Range
         beaconRegion.notifyOnEntry = true
         
         // Requests permission to use location services
@@ -69,7 +71,7 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        print("didChangeAuthorizationStatus")
+        print("User has made a decision about location services.")
         
         switch status {
             
@@ -132,47 +134,33 @@ extension ViewController: CLLocationManagerDelegate {
         let foundBeacons = beacons
         
         if foundBeacons.count > 0 {
-            
             if let closestBeacon = foundBeacons[0] as? CLBeacon {
-                
                 var proximityMessage: String!
                 
-                
-                
                 if lastStage != closestBeacon.proximity {
-                    
                     lastStage = closestBeacon.proximity
                     
                     switch  lastStage {
-                        
-                    case .Immediate:
-                        print("Immediate")
-                        proximityMessage = "Very close"
-                        self.view.backgroundColor = UIColor.greenColor()
-                        
-                    case .Near:
-                        print("Near")
-                        proximityMessage = "Near"
-                        self.view.backgroundColor = UIColor.grayColor()
-                        
-                    case .Far:
-                        print("Far")
-                        proximityMessage = "Far"
-                        self.view.backgroundColor = UIColor.redColor()
-                        
-                        
-                    default:
-                        proximityMessage = "Out of range"
-                        self.view.backgroundColor = UIColor.whiteColor()
-                        
+                        case .Immediate:
+                            print("Immediate")
+                            proximityMessage = "Immediate"
+                            self.view.backgroundColor = UIColor.greenColor()
+                            
+                        case .Near:
+                            print("Near")
+                            proximityMessage = "Near"
+                            self.view.backgroundColor = UIColor.grayColor()
+                            
+                        case .Far:
+                            print("Far")
+                            proximityMessage = "Far"
+                            self.view.backgroundColor = UIColor.redColor()
+                            
+                        default:
+                            print("Out of range")
+                            proximityMessage = "Out of range"
+                            self.view.backgroundColor = UIColor.whiteColor()
                     }
-                    var makeString = "Beacon Details:n"
-                    makeString += "UUID = (closestBeacon.proximityUUID.UUIDString)n"
-                    makeString += "Identifier = (region.identifier)n"
-                    makeString += "Major Value = (closestBeacon.major.intValue)n"
-                    makeString += "Minor Value = (closestBeacon.minor.intValue)n"
-                    makeString += "Distance From iBeacon = (proximityMessage)"
-                    
                     self.beaconStatus.text = proximityMessage
                 }
             }
@@ -180,18 +168,13 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didStartMonitoringForRegion region: CLRegion) {
-        
         // Tells the delegate that a iBeacon Area is being monitored
-        
         locationManager.requestStateForRegion(region)
     }
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        
         // Tells the delegate that the user entered in iBeacon range or area.
-        
-        simpleAlert("Welcome", message: "Welcome to our store")
-        
+        simpleAlert("Welcome", message: "Welcome to our store!")
         // This method called because
         // beaconRegion.notifyOnEntry = true
         // in setupBeacon() function
@@ -201,7 +184,7 @@ extension ViewController: CLLocationManagerDelegate {
         
         // Tells the delegate that the user exit the iBeacon range or area.
         
-        simpleAlert("Good Bye", message: "Have a nice day")
+        simpleAlert("Good Bye", message: "Thank you for visiting.")
         
         // This method called because
         // beaconRegion.notifyOnExit = true
@@ -214,20 +197,16 @@ extension ViewController: CLLocationManagerDelegate {
             
         case .Inside:
             //The user is inside the iBeacon range.
-            
             locationManager.startRangingBeaconsInRegion(region as! CLBeaconRegion)
-            
             break
             
         case .Outside:
             //The user is outside the iBeacon range.
-            
             locationManager.stopRangingBeaconsInRegion(region as! CLBeaconRegion)
-            
             break
             
         default :
-            // it is unknown whether the user is inside or outside of the iBeacon range.
+            print("Unknown user location")
             break
             
         }

@@ -21,11 +21,11 @@ class ViewController: UIViewController,CBPeripheralManagerDelegate {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        // Define in iBeacon.swift
         beaconStatus.numberOfLines = 0;
         beaconStatus.textAlignment = NSTextAlignment.Center;
         beaconStatus.font = UIFont (name: "HelveticaNeue-Bold", size: 50)
+        
+        // Initialize beacon listening.
         self.setupBeacon()
     }
     
@@ -38,7 +38,7 @@ class ViewController: UIViewController,CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
         
         if peripheral.state == CBPeripheralManagerState.PoweredOff {
-            print("Need to turn on bluetooth")
+            print("Please turn on bluetooth")
             simpleAlert("Beacon", message: "Turn On Your Device Bluetooth")
         }
     }
