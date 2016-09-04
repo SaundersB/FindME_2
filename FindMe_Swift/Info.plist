@@ -26,6 +26,11 @@
 	<string>FindMe needs to know your location.</string>
 	<key>NSLocationAlwaysUsageDescription - 2</key>
 	<string>FindMe needs to know your location.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>

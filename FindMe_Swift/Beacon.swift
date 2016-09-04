@@ -73,6 +73,8 @@ extension ViewController: CLLocationManagerDelegate {
         locationManager.startMonitoringForRegion(beaconRegion)
         locationManager.startMonitoringVisits()
         locationManager.pausesLocationUpdatesAutomatically = false
+        
+        regsiterForNotifications()
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -96,20 +98,6 @@ extension ViewController: CLLocationManagerDelegate {
                 
             default:
                 print("Undecided")
-
-                let alertController = UIAlertController(
-                    title: "Background Location Access Disabled",
-                    message: "In order to be notified about adorable kittens near you, please open this app's settings and set location access to 'Always'.",
-                    preferredStyle: .Alert)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                alertController.addAction(cancelAction)
-                let openAction = UIAlertAction(title: "Open Settings", style: .Default) { (action) in
-                    if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.sharedApplication().openURL(url)
-                    }
-                }
-                alertController.addAction(openAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
                 break
         }
     }
@@ -147,6 +135,7 @@ extension ViewController: CLLocationManagerDelegate {
                         print("Immediate")
                         proximityMessage = "Immediate"
                         self.view.backgroundColor = UIColor.greenColor()
+                        sendLocalNotificationWithMessage("You're in our store")
                         
                     case .Unknown:
                         print("Out of range")
@@ -164,6 +153,9 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        locationManager.startRangingBeaconsInRegion(region as! CLBeaconRegion)
+        locationManager.startUpdatingLocation()
+        
         // Tells the delegate that the user entered in iBeacon range or area.
         simpleAlert("Welcome", message: "Welcome to our store!")
         sendLocalNotificationWithMessage("Welcome to our store!")
@@ -173,6 +165,9 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        locationManager.stopRangingBeaconsInRegion(region as! CLBeaconRegion)
+        locationManager.stopUpdatingLocation()
+        
         // Tells the delegate that the user exit the iBeacon range or area.
         simpleAlert("Good Bye", message: "Thank you for visiting.")
         sendLocalNotificationWithMessage("Thank you for visiting.")
@@ -203,8 +198,15 @@ extension ViewController: CLLocationManagerDelegate {
     
     func sendLocalNotificationWithMessage(message: String!) {
         let notification:UILocalNotification = UILocalNotification()
+        print("Sending local notification")
         notification.alertBody = message
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    func regsiterForNotifications(){
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
     }
     
 }
