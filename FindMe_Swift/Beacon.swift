@@ -6,11 +6,31 @@
 //  Copyright © 2016 Brandon_Saunders. All rights reserved.
 //
 /*
+Description:
+iBeacon is a protocol developed by Apple. Beacons are hardware transmitters that are a class of Bluetooth low energy (LE) devices who broadcast their identifier to nearby portable electronic devices. The technology enables smartphones, tablets and other devices to perform actions when in close proximity to an iBeacon.
 
+Region Monitoring:
+iBeacons can be set to notify when a user has entered or exited a iBeacon region.
  
+Ranging:
+iBeacons can be set to notify within four different distance ranges.
+ 
+Beacon Ranging Distance Options:
 Immediate	Within a few centimeters
 Near	Within a couple of meters
 Far	Greater than 10 meters away
+ 
+Beacon Payload:
+Apple has provided a beacon API for iOS applications that handles the beacon payload.
+ 
+Beacon type (2 bytes, 0x02-15)
+Apple has assigned a value for proximity beacons, which is used by all iBeacons. Some sources state that this is a two-byte field,with the first byte indicating a protocol identifier of 2 for iBea‐ con and the second byte indicating a length of 21 further bytes (15 in hex is 21 decimal).
+Proximity UUID (16 bytes)
+This field contains the UUID for the iBeacon. Typically, this will be set to the organization that owns the beacon. Not all beacon products allow this field to be set.
+Major (2 bytes) and Minor (2 byte) numbers
+These fields, each two bytes in length, contain the major or minor number that will be contained within the iBeacon’s broadcast.
+Measured power (1 byte)
+Implicit within the iBeacon protocol is the idea of ranging (identifying the distance a device is from a beacon, as discussed in “Ranging” on page 48). There may be slight variations in transmitter power, so an iBeacon is calibrated with a reference client. Measured power is set by holding a receiver one meter from the beacon and finding an average received signal strength. This field holds the measured power as a two’s comple‐ ment.3 For example, a value of C5 indicates a measured power at one meter of –59 dBm.
 */
 
 import Foundation
