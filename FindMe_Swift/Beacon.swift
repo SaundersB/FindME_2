@@ -50,7 +50,7 @@ extension ViewController: CLLocationManagerDelegate {
         locationManager.delegate = self
         
         // iBeacon UUID
-        let uuid = NSUUID(UUIDString: "e2c56db5-dffb-48d2-b060-d0f5a71096e0")!
+        let uuid = NSUUID(uuidString: "e2c56db5-dffb-48d2-b060-d0f5a71096e0")!
         
         // Company identifier. I like to use the bundler identifier.
         let identifier = "saunders-brandon.FindMe-Swift"
@@ -60,7 +60,7 @@ extension ViewController: CLLocationManagerDelegate {
         let Minor:CLBeaconMinorValue = 0
         
         // Setting the reacon region according to the beacon specific stats.
-        let beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: Major, minor: Minor, identifier: identifier)
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid as UUID, major: Major, minor: Minor, identifier: identifier)
         
         // Called delegate when Enter iBeacon Range
         beaconRegion.notifyOnEntry = true
@@ -70,31 +70,31 @@ extension ViewController: CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         
         // Starts monitoring the specified iBeacon Region
-        locationManager.startMonitoringForRegion(beaconRegion)
+        locationManager.startMonitoring(for: beaconRegion)
         locationManager.startMonitoringVisits()
         locationManager.pausesLocationUpdatesAutomatically = false
         
         regsiterForNotifications()
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         print("User has made a decision about location services.")
         
         switch status {
-            case .AuthorizedAlways:
+            case .authorizedAlways:
                 print("Always authorized")
                 // Starts the generation of updates that report the user’s current location.
                 locationManager.startUpdatingLocation()
                 
-            case .Restricted:
+            case .restricted:
                 print("Restricted")
                 // Your app is not authorized to use location services.
-                simpleAlert("Permission Error", message: "Need Location Service Permission To Access Beacon")
+                simpleAlert(title: "Permission Error", message: "Need Location Service Permission To Access Beacon")
             
-            case .Denied:
+            case .denied:
                 print("Denied")
                 // The user explicitly denied the use of location services for this app or location services are currently disabled in Settings.
-                simpleAlert("Permission Error", message: "Need Location Service Permission To Access Beacon")
+                simpleAlert(title: "Permission Error", message: "Need Location Service Permission To Access Beacon")
                 
             default:
                 print("Undecided")
@@ -104,14 +104,14 @@ extension ViewController: CLLocationManagerDelegate {
     
     func simpleAlert (title:String,message:String) {
         
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 
     
     
-    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion)
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion)
     {
         // Tells the delegate that one or more beacons are in range.
         let foundBeacons = beacons
@@ -121,66 +121,66 @@ extension ViewController: CLLocationManagerDelegate {
                 var proximityMessage: String!
 
                 switch  closestBeacon.proximity {
-                    case .Far:
+                    case .far:
                         print("Far")
                         proximityMessage = "Far"
-                        self.view.backgroundColor = UIColor.redColor()
+                        self.view.backgroundColor = UIColor.red
                     
-                    case .Near:
+                    case .near:
                         print("Near")
                         proximityMessage = "Near"
-                        self.view.backgroundColor = UIColor.grayColor()
+                        self.view.backgroundColor = UIColor.gray
                     
-                    case .Immediate:
+                    case .immediate:
                         print("Immediate")
                         proximityMessage = "Immediate"
-                        self.view.backgroundColor = UIColor.greenColor()
+                        self.view.backgroundColor = UIColor.green
                     
-                    case .Unknown:
+                    case .unknown:
                         print("Out of range")
                         proximityMessage = "Out of range"
-                        self.view.backgroundColor = UIColor.whiteColor()
+                        self.view.backgroundColor = UIColor.white
                 }
                 self.beaconStatus.text = proximityMessage
             }
         }
     }
     
-    func locationManager(manager: CLLocationManager, didStartMonitoringForRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         // Tells the delegate that a iBeacon Area is being monitored
-        locationManager.requestStateForRegion(region)
+        locationManager.requestState(for: region)
     }
     
-    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        locationManager.startRangingBeaconsInRegion(region as! CLBeaconRegion)
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        locationManager.startRangingBeacons(in: region as! CLBeaconRegion)
         locationManager.startUpdatingLocation()
         
         // Tells the delegate that the user entered in iBeacon range or area.
-        simpleAlert("Welcome", message: "Welcome to our store!")
-        sendLocalNotificationWithMessage("Welcome to our store!")
+        simpleAlert(title: "Welcome", message: "Welcome to our store!")
+        sendLocalNotificationWithMessage(message: "Welcome to our store!")
     }
     
-    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        locationManager.stopRangingBeaconsInRegion(region as! CLBeaconRegion)
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        locationManager.stopRangingBeacons(in: region as! CLBeaconRegion)
         locationManager.stopUpdatingLocation()
         
         // Tells the delegate that the user exit the iBeacon range or area.
-        simpleAlert("Good Bye", message: "Thank you for visiting.")
-        sendLocalNotificationWithMessage("Thank you for visiting.")
+        simpleAlert(title: "Good Bye", message: "Thank you for visiting.")
+        sendLocalNotificationWithMessage(message: "Thank you for visiting.")
     }
     
-    func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         print("Determined location state")
         
         switch  state {
-            case .Inside:
+            case .inside:
                 //The user is inside the iBeacon range.
-                locationManager.startRangingBeaconsInRegion(region as! CLBeaconRegion)
+                locationManager.startRangingBeacons(in: region as! CLBeaconRegion)
                 break
                 
-            case .Outside:
+            case .outside:
                 //The user is outside the iBeacon range.
-                locationManager.stopRangingBeaconsInRegion(region as! CLBeaconRegion)
+                locationManager.stopRangingBeacons(in: region as! CLBeaconRegion)
                 break
                 
             default :
@@ -193,13 +193,13 @@ extension ViewController: CLLocationManagerDelegate {
         let notification:UILocalNotification = UILocalNotification()
         print("Sending local notification")
         notification.alertBody = message
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
     func regsiterForNotifications(){
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+        //let settings = UIUserNotificationSettings(forTypes: [.alert, .badge, .sound], categories: nil)
+        //UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+       // UIApplication.shared.registerForRemoteNotifications()
     }
     
 }
