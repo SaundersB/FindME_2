@@ -74,7 +74,6 @@ extension ViewController: CLLocationManagerDelegate {
         locationManager.startMonitoringVisits()
         locationManager.pausesLocationUpdatesAutomatically = false
         
-        regsiterForNotifications()
     }
     
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -196,10 +195,6 @@ extension ViewController: CLLocationManagerDelegate {
         UIApplication.shared.scheduleLocalNotification(notification)
     }
     
-    func regsiterForNotifications(){
-        //let settings = UIUserNotificationSettings(forTypes: [.alert, .badge, .sound], categories: nil)
-        //UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-       // UIApplication.shared.registerForRemoteNotifications()
-    }
+
     
 }

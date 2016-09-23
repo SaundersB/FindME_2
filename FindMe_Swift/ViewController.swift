@@ -35,11 +35,10 @@ class ViewController: UIViewController,CBPeripheralManagerDelegate {
 
 
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        
-        //if peripheral.state == CBPeripheralManagerState.PoweredOff {
-         //   print("Please turn on bluetooth")
-          //  simpleAlert(title: "Beacon", message: "Turn On Your Device Bluetooth")
-        //}
+        if peripheral.state == CBManagerState.poweredOff {
+            print("Please turn on bluetooth")
+            simpleAlert(title: "Beacon", message: "Turn On Your Device Bluetooth")
+        }
     }
 
 }
